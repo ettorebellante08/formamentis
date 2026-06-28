@@ -28,11 +28,11 @@ export default function Team({ members }: { members: TeamMember[] }) {
           </p>
         </Reveal>
 
-        <Reveal stagger staggerAmount={0.1} className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+        <Reveal stagger staggerAmount={0.1} className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
           {members.map((m) => (
             <article
               key={m.id}
-              className="card-surface group flex flex-col items-center p-5 text-center hover:border-primary/30 hover:shadow-card sm:p-6"
+              className="card-surface group flex flex-col items-center p-5 text-center hover:border-primary/30 hover:shadow-[0_20px_50px_-20px_rgba(24,144,204,0.25)] sm:p-6"
             >
               <div className="relative mb-4 h-20 w-20 overflow-hidden rounded-full ring-2 ring-primary/10 transition-all duration-500 group-hover:ring-primary/40 sm:h-24 sm:w-24">
                 {m.foto_url ? (

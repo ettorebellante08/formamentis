@@ -22,7 +22,7 @@ export default function Footer({ settings }: { settings: SiteSettings }) {
 
   return (
     <footer id="contatti" className="relative scroll-mt-20 overflow-hidden border-t border-ink/10 bg-background pt-16 sm:pt-24">
-      <div className="pointer-events-none absolute -top-16 left-1/2 h-[30vmin] w-[60vmin] -translate-x-1/2 rounded-full bg-primary/10 blur-[110px]" />
+      <div className="pointer-events-none absolute -top-16 left-1/2 hidden h-[30vmin] w-[60vmin] -translate-x-1/2 rounded-full bg-primary/10 blur-[110px] sm:block" />
 
       <div className="container-fm relative">
         <div className="grid gap-10 pb-12 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">

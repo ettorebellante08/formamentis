@@ -67,7 +67,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         href={project.link_esterno}
         target={project.apri_in_nuova_scheda ? '_blank' : '_self'}
         rel="noopener noreferrer"
-        className="card-surface group relative flex flex-col overflow-hidden hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-card"
+        className="card-surface group relative flex flex-col overflow-hidden hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[0_20px_50px_-20px_rgba(24,144,204,0.25)]"
       >
         {cardContent}
       </a>
@@ -77,7 +77,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/progetti/${project.slug}`}
-      className="card-surface group relative flex flex-col overflow-hidden hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-card"
+      className="card-surface group relative flex flex-col overflow-hidden hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-[0_20px_50px_-20px_rgba(24,144,204,0.25)]"
     >
       {cardContent}
     </Link>

@@ -14,6 +14,7 @@ export default function Hero() {
     const el = root.current;
     if (!el) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
 
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
@@ -23,32 +24,33 @@ export default function Hero() {
         return;
       }
 
-      // Timeline d'ingresso al caricamento
+      // Timeline d'ingresso — più breve su mobile per non bloccare il thread
+      const dur = isMobile ? 0.65 : 1;
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-      tl.from('.hero-glow', { opacity: 0, scale: 0.6, duration: 1.4 })
-        .from('.hero-logo-in', { opacity: 0, scale: 0.82, y: 12, duration: 1.1 }, '-=1.0')
-        .from('.hero-badge', { opacity: 0, y: 16, duration: 0.7 }, '-=0.6')
-        .from('.hero-title span', { opacity: 0, y: 26, duration: 0.8, stagger: 0.12 }, '-=0.4')
-        .from('.hero-sub', { opacity: 0, y: 18, duration: 0.7 }, '-=0.4')
-        .from('.hero-cta', { opacity: 0, y: 14, duration: 0.6, stagger: 0.1 }, '-=0.4')
-        .from('.hero-scroll', { opacity: 0, duration: 0.6 }, '-=0.2');
+      if (!isMobile) tl.from('.hero-glow', { opacity: 0, scale: 0.6, duration: 1.4 });
+      tl.from('.hero-logo-in', { opacity: 0, scale: 0.88, y: 10, duration: dur }, isMobile ? 0 : '-=1.0')
+        .from('.hero-badge', { opacity: 0, y: 12, duration: dur * 0.65 }, '-=0.4')
+        .from('.hero-title span', { opacity: 0, y: isMobile ? 16 : 26, duration: dur * 0.75, stagger: 0.1 }, '-=0.3')
+        .from('.hero-sub', { opacity: 0, y: 12, duration: dur * 0.65 }, '-=0.3')
+        .from('.hero-cta', { opacity: 0, y: 10, duration: dur * 0.55, stagger: 0.08 }, '-=0.3')
+        .from('.hero-scroll', { opacity: 0, duration: 0.5 }, '-=0.1');
 
-      // Il logo SI MUOVE allo scorrere: sale, si rimpicciolisce e sfuma
-      gsap.to('.hero-logo-scroll', {
-        yPercent: -120,
-        scale: 0.5,
-        opacity: 0.15,
-        ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: 0.6 },
-      });
-
-      // Il testo accompagna lo scroll con un parallax più lieve
-      gsap.to('.hero-text', {
-        yPercent: -22,
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: 0.6 },
-      });
+      // Parallax scroll — solo su desktop (su mobile causa jank)
+      if (!isMobile) {
+        gsap.to('.hero-logo-scroll', {
+          yPercent: -120,
+          scale: 0.5,
+          opacity: 0.15,
+          ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: 1 },
+        });
+        gsap.to('.hero-text', {
+          yPercent: -22,
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top top', end: 'bottom top', scrub: 1 },
+        });
+      }
     }, el);
 
     return () => ctx.revert();
@@ -61,9 +63,9 @@ export default function Hero() {
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden"
     >
       {/* Sfondo chiaro: griglia + bagliori soft */}
-      <div className="pointer-events-none absolute inset-0 bg-grid-faint [background-size:44px_44px] [mask-image:radial-gradient(70%_60%_at_50%_42%,#000_25%,transparent_100%)]" />
-      <div className="hero-glow pointer-events-none absolute left-1/2 top-1/3 h-[55vmin] w-[55vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[110px]" />
-      <div className="hero-glow pointer-events-none absolute right-[10%] top-[16%] h-[26vmin] w-[26vmin] rounded-full bg-accent/10 blur-[100px]" />
+      <div className="pointer-events-none absolute inset-0 hidden bg-grid-faint [background-size:44px_44px] [mask-image:radial-gradient(70%_60%_at_50%_42%,#000_25%,transparent_100%)] sm:block" />
+      <div className="hero-glow pointer-events-none absolute left-1/2 top-1/3 h-[55vmin] w-[55vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[80px] sm:blur-[110px]" />
+      <div className="hero-glow pointer-events-none absolute right-[10%] top-[16%] hidden h-[26vmin] w-[26vmin] rounded-full bg-accent/10 blur-[100px] sm:block" />
 
       <div className="container-fm relative z-10 flex flex-col items-center pt-24 text-center sm:pt-20">
         {/* Logo che si muove allo scroll (scroll → in → float) */}
