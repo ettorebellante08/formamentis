@@ -35,3 +35,5 @@ yarn-error.log*
 /Group*.jpg
 *.mp4
 *.mov
+*.webp
+!public/**/*.webp
