@@ -7,6 +7,17 @@ function isLogoAsset(url: string | null) {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
+  if (!project.nome) {
+    return (
+      <div className="card-surface relative flex flex-col overflow-hidden border-dashed">
+        <div className="relative aspect-[16/10] bg-surface-dark" />
+        <div className="flex flex-1 flex-col items-center justify-center p-5 sm:p-6">
+          <span className="font-display text-sm font-semibold text-ink-muted">Prossimamente</span>
+        </div>
+      </div>
+    );
+  }
+
   const logo = isLogoAsset(project.immagine_url);
   const isExternal = project.tipo === 'esterno';
 

@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import ChiSiamo from '@/components/ChiSiamo';
 import Progetti from '@/components/Progetti';
 import Team from '@/components/Team';
+import Partner from '@/components/Partner';
 import Footer from '@/components/Footer';
 import { getProjects, getTeamMembers, getSettings } from '@/lib/data';
 
@@ -27,6 +28,7 @@ export default async function HomePage() {
         <ChiSiamo text={settings.chi_siamo} />
         <Progetti projects={projects} />
         <Team members={team} />
+        <Partner />
       </main>
       <Footer settings={settings} />
     </>

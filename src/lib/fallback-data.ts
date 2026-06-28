@@ -50,6 +50,21 @@ export const STATIC_PROJECTS: Project[] = [
     attivo: true,
     created_at: '2024-01-03T00:00:00.000Z',
   },
+  {
+    id: 'progetto-placeholder',
+    nome: '',
+    slug: 'prossimamente',
+    tipo: 'interno',
+    descrizione_breve: '',
+    descrizione_completa: '',
+    immagine_url: null,
+    link_esterno: null,
+    apri_in_nuova_scheda: false,
+    cta_label: null,
+    ordine: 4,
+    attivo: true,
+    created_at: '2024-01-04T00:00:00.000Z',
+  },
 ];
 
 export const STATIC_TEAM: TeamMember[] = [
@@ -75,6 +90,30 @@ export const STATIC_TEAM: TeamMember[] = [
     ruolo: 'Segretario',
     foto_url: '/team/mariagemma-pecoraro.webp',
     ordine: 3,
+    created_at: '2024-01-01T00:00:00.000Z',
+  },
+  {
+    id: 'team-4',
+    nome: 'Ing. Giacomo Filippone',
+    ruolo: '',
+    foto_url: null,
+    ordine: 4,
+    created_at: '2024-01-01T00:00:00.000Z',
+  },
+  {
+    id: 'team-5',
+    nome: 'Ing. Pasquale Pillitteri',
+    ruolo: '',
+    foto_url: null,
+    ordine: 5,
+    created_at: '2024-01-01T00:00:00.000Z',
+  },
+  {
+    id: 'team-6',
+    nome: 'Dott.ssa Anna Castrogiovanni',
+    ruolo: '',
+    foto_url: null,
+    ordine: 6,
     created_at: '2024-01-01T00:00:00.000Z',
   },
 ];
