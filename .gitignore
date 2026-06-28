@@ -33,3 +33,5 @@ yarn-error.log*
 # original source assets (heavy, kept out of repo)
 /Group*.png
 /Group*.jpg
+*.mp4
+*.mov
